@@ -9,6 +9,13 @@ GameObject:
   m_Component:
   - component: {fileID: 400000}
   - component: {fileID: 11100000}
+  - component: {fileID: 54299352555383544}
+  - component: {fileID: 114832538940987450}
+  - component: {fileID: 114455283390917770}
+  - component: {fileID: 65124303249815134}
+  - component: {fileID: 143500283923566180}
+  - component: {fileID: 114747746145589880}
+  - component: {fileID: 114077446391574448}
   m_Layer: 0
   m_Name: samuzai
   m_TagString: Untagged
@@ -1629,15 +1636,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -5, y: 0.2, z: 0}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_Children:
   - {fileID: 400202}
   - {fileID: 400204}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1002 &400001
 EditorExtensionImpl:
   serializedVersion: 6
@@ -3172,13 +3179,14 @@ Animation:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400008, guid: e156495aa9aa3424d85dac51d5fdbd21, type: 3}
+  m_Animation: {fileID: 7400000, guid: e156495aa9aa3424d85dac51d5fdbd21, type: 3}
   m_Animations:
   - {fileID: 7400002, guid: e156495aa9aa3424d85dac51d5fdbd21, type: 3}
   - {fileID: 7400004, guid: e156495aa9aa3424d85dac51d5fdbd21, type: 3}
   - {fileID: 7400006, guid: e156495aa9aa3424d85dac51d5fdbd21, type: 3}
   - {fileID: 7400008, guid: e156495aa9aa3424d85dac51d5fdbd21, type: 3}
-  - {fileID: 7400010, guid: e156495aa9aa3424d85dac51d5fdbd21, type: 3}
+  - {fileID: 7400000, guid: e156495aa9aa3424d85dac51d5fdbd21, type: 3}
+  - {fileID: 0}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -3231,9 +3239,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: 0.01586017, y: -0.0098420605, z: -0.0058101416}
+    m_Extent: {x: 0.25026354, y: 0.06395831, z: 0.64897436}
+  m_DirtyAABB: 0
 --- !u!1002 &13700001
 EditorExtensionImpl:
   serializedVersion: 6
@@ -3359,9 +3367,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: -0.009540021, y: -0.114145756, z: 0.9179112}
+    m_Extent: {x: 0.37320542, y: 0.46968263, z: 0.91750264}
+  m_DirtyAABB: 0
 --- !u!1002 &13700003
 EditorExtensionImpl:
   serializedVersion: 6
@@ -3379,3 +3387,107 @@ Prefab:
 --- !u!1002 &100100001
 EditorExtensionImpl:
   serializedVersion: 6
+--- !u!54 &54299352555383544
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65124303249815134
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.8092966, z: 0.69604844}
+  m_Center: {x: 2.7474022e-16, y: 0.90647674, z: 0.08183311}
+--- !u!114 &114077446391574448
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc7395c397973e4da9b7d7d1ba3bedf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114455283390917770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc2bb15fe7d7a740b0e1cdda124a8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 114832538940987450}
+--- !u!114 &114747746145589880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630d64ae393f33347a0b32a604f54ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallMultiplier: 2.5
+  shortHopMultiplier: 1.5
+--- !u!114 &114832538940987450
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ea972dba6919d448e426a8632cc354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  percentage: 0
+  weight: 5
+  moveSpeed: 5
+  jumpVelocity: 5
+  doubleJump: 1
+  canMove: 1
+  lookLeft: {x: 0, y: 0, z: 0, w: 0}
+  lookRight: {x: 0, y: 0, z: 0, w: 0}
+  moveDirection: {x: 0, y: 0, z: 0}
+  rigidBody: {fileID: 54299352555383544}
+  myTransform: {fileID: 400000}
+  animator: {fileID: 0}
+  characterController: {fileID: 0}
+--- !u!143 &143500283923566180
+CharacterController:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1.8
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.9, z: 0.05}

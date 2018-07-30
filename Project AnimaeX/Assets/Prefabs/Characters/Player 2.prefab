@@ -24,6 +24,9 @@ GameObject:
   - component: {fileID: 65424008414263646}
   - component: {fileID: 114001244985615530}
   - component: {fileID: 54000977807674604}
+  - component: {fileID: 114051220767704738}
+  - component: {fileID: 114248898418508940}
+  - component: {fileID: 114152558085438372}
   m_Layer: 0
   m_Name: Player 2
   m_TagString: Untagged
@@ -125,3 +128,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AdditionalVertexStreamMesh: {fileID: 0}
+--- !u!114 &114051220767704738
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1046575854521530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc2bb15fe7d7a740b0e1cdda124a8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 0}
+--- !u!114 &114152558085438372
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1046575854521530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc7395c397973e4da9b7d7d1ba3bedf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114248898418508940
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1046575854521530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630d64ae393f33347a0b32a604f54ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallMultiplier: 2.5
+  shortHopMultiplier: 2

@@ -24,9 +24,9 @@ GameObject:
   - component: {fileID: 65195895252079140}
   - component: {fileID: 114069071785713094}
   - component: {fileID: 54400005222913900}
-  - component: {fileID: 114286419754854062}
   - component: {fileID: 114036145617934216}
   - component: {fileID: 114592819240675782}
+  - component: {fileID: 114679296519373526}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Untagged
@@ -40,7 +40,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1879592835899558}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -5, y: 0.65, z: 0}
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_Children: []
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc2bb15fe7d7a740b0e1cdda124a8a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 114286419754854062}
+  character: {fileID: 0}
 --- !u!114 &114069071785713094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,25 +140,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AdditionalVertexStreamMesh: {fileID: 0}
---- !u!114 &114286419754854062
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1879592835899558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51ea972dba6919d448e426a8632cc354, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  percentage: 0
-  weight: 5
-  moveSpeed: 5
-  jumpVelocity: 5
-  doubleJump: 1
-  canMove: 1
-  rigidBody: {fileID: 54400005222913900}
-  myTransform: {fileID: 4927027472694486}
 --- !u!114 &114592819240675782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,3 +153,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallMultiplier: 2.5
   shortHopMultiplier: 2
+--- !u!114 &114679296519373526
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1879592835899558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc7395c397973e4da9b7d7d1ba3bedf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

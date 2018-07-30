@@ -12,81 +12,54 @@ public class PlayerController : MonoBehaviour {
     #endregion
 
     #region Custom Methods
-    private void Move()
+    private void UpdateMovement()
     {
-        //animator.SetBool("Walking", false); //Resets walking animation to idle
+        //character.animator.SetBool("Walking", false); //Resets walking animation to idle
 
         if (!character.canMove)
         { //Return if player can't move
             return;
         }
-
-        //Move according to controls
-
-        //Move left
-        if (Input.GetKey(KeyCode.A))
+        else
         {
-            transform.rotation = character.lookLeft;
-            character.moveDirection = transform.TransformDirection(-character.moveDirection);
-            character.moveDirection = Vector3.left*character.moveSpeed;
-
-            //character.animation.SetBool("IsRunning", true);
+            Move();
         }
+        
+    }
 
-        //Move right
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.rotation = character.lookRight;
-            character.moveDirection = transform.TransformDirection(character.moveDirection);
-            character.moveDirection = Vector3.right* character.moveSpeed;
-            //character.animation.SetBool("IsRunning", true);
-        }
 
-        if (Input.GetButtonDown("Jump"))
+    private void Move()
+    {
+        if (character.doubleJump > 0 && Input.GetKeyDown(KeyCode.Space))
         { //Drop bomb
             Jump();
         }
+
+        if (Input.GetKey(KeyCode.W))
+        {
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        { //Left movement
+            character.rigidBody.velocity = new Vector3(-character.moveSpeed, character.rigidBody.velocity.y, 0);
+            character.myTransform.rotation = Quaternion.Euler(0, 270, 0);
+            //character.animator.SetBool("Walking", true);
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        { //Crouch
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        { //Right movement
+            character.rigidBody.velocity = new Vector3(character.moveSpeed, character.rigidBody.velocity.y, 0);
+            character.myTransform.rotation = Quaternion.Euler(0, 90, 0);
+            //character.animator.SetBool("Walking", true);
+        }
+
+        
     }
-
-    //    private void Move()
-    //    {
-    //        CharacterController controller = GetComponent<CharacterController>();
-    //        if (controller.isGrounded)
-    //        {
-
-    //            anim.SetBool("IsRunning", false);
-
-    //            moveDirection = new Vector3(-(Input.GetAxis("Vertical")), 0, Input.GetAxis("Horizontal"));
-
-    //            if (Input.GetButton("Jump"))
-    //                Jump();
-
-    //            if (Input.GetKey(KeyCode.A))
-    //            {
-
-    //                transform.rotation = lookLeft;
-    //                moveDirection = transform.TransformDirection(-moveDirection);
-    //                moveDirection *= speed;
-
-    //                anim.SetBool("IsRunning", true);
-
-    //            }
-
-    //            if (Input.GetKey(KeyCode.D))
-    //            {
-    //                transform.rotation = lookRight;
-    //                moveDirection = transform.TransformDirection(moveDirection);
-    //                moveDirection *= speed;
-    //                anim.SetBool("IsRunning", true);
-    //            }
-
-    //        }
-    //        moveDirection.y -= gravity * Time.deltaTime;
-    //        controller.Move(moveDirection * Time.deltaTime);
-    //    }
-    //}
-
-
+    
 
     void Jump()
     {
@@ -103,8 +76,9 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Move();
-	}
+        UpdateMovement();
+
+    }
 
 	#endregion
 }

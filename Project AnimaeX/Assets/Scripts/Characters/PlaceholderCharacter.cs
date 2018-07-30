@@ -22,7 +22,7 @@ public class PlaceholderCharacter : MonoBehaviour {
     //Cached components
     public Rigidbody rigidBody;
     public Transform myTransform;
-    public Animation animation;
+    //public Animator animator;
     public CharacterController characterController;
     #endregion
 
@@ -38,7 +38,7 @@ public class PlaceholderCharacter : MonoBehaviour {
         myTransform = transform;
 
         Cursor.visible = false;
-        animation = GetComponent<Animation>();
+        //animator = GetComponent<Animator>();
 
         lookRight = transform.rotation;
         lookLeft = lookRight * Quaternion.Euler(0, 180, 0);
