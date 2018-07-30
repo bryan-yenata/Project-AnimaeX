@@ -709,9 +709,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 4fa5864a-e0c1-44aa-aa1d-60509b6e64c5
+  cloudProjectId: d04d367d-bf59-488e-9f8c-10a0d4947db6
   projectName: Project AnimaeX
-  organizationId: muayanfrost
+  organizationId: chrixus26
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
