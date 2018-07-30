@@ -12,23 +12,19 @@ MonoBehaviour:
   m_Name: Settings
   m_EditorClassIdentifier: 
   m_bool_keys:
-  - pushpull_ignoreNonManifoldIndices
-  - pushpull_brush_sticky
+  - z_pref_lockBrushToFirst
   - z_pref_rebuildNormals
   - z_pref_rebuildCollisions
-  - z_pref_lockBrushToFirst
   - z_pref_lockBrushSettings
   - z_pref_additionalVertexStreams
   - z_pref_hideWireframe
-  m_int_keys:
-  - z_GIWorkflowMode
-  - pushpull_brush_dir
+  m_int_keys: []
   m_float_keys: []
   m_string_keys: []
   m_Color_keys:
   - z_pref_brushColor
-  m_bool_values: 0101010101000101
-  m_int_values: 0000000000000000
+  m_bool_values: 010101000101
+  m_int_values: 
   m_float_values: []
   m_string_values: []
   m_Color_values:
