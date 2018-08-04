@@ -20,7 +20,7 @@ public class PlaceholderCharacter : MonoBehaviour {
     public Vector3 moveDirection = Vector3.zero;
 
     //Cached components
-    public Rigidbody rigidBody;
+    public Rigidbody2D rigidBody;
     public Transform myTransform;
     //public Animator animator;
     public CharacterController characterController;
@@ -34,7 +34,7 @@ public class PlaceholderCharacter : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        rigidBody = GetComponent<Rigidbody>();
+        rigidBody = GetComponent<Rigidbody2D>();
         myTransform = transform;
 
         Cursor.visible = false;
