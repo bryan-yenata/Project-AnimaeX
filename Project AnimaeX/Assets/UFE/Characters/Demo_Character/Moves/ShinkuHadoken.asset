@@ -11,7 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f9522b1b0f53b4c87d047ac5c3794f, type: 3}
   m_Name: ShinkuHadoken
   m_EditorClassIdentifier: 
-  characterPrefab: {fileID: 100052, guid: ceeaecc0393d0fb438fde5457a24ead6, type: 2}
+  characterPrefab: {fileID: 1840284687457372, guid: fdb61d626a973324fa694a54b210be6e,
+    type: 2}
   moveName: Shinku Hadoken
   description: Super Fire Ball
   fps: 60
@@ -27,11 +28,11 @@ MonoBehaviour:
   possibleStates: 0000000001000000
   attackType: 1
   cancelMoveWheLanding: 0
-  animationClip: {fileID: 7400000, guid: 633a45f23eea08f418cb4e4182fbdc63, type: 2}
+  animationClip: {fileID: 7400000, guid: d5f52d5828f0b28449b5bab7591d774f, type: 2}
   wrapMode: 0
   interpolationSpeed: 0
-  animationSpeed: 0.6
-  totalFrames: 93
+  animationSpeed: 1
+  totalFrames: 31
   startUpFrames: 5
   activeFrames: 5
   recoveryFrames: 5
