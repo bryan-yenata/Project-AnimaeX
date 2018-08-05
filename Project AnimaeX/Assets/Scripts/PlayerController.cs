@@ -2,68 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : PhysicsOverride {
 
     #region Variables
-    public PlaceholderCharacter character;
+    public float jumpTakeOffSpeed = 7f;
+    public float jumpCancelModifier = 0.5f;
 
+    //Character parameters
+    public float percentage = 0.0f;
+    public float weight = 5f;
+    public float moveSpeed = 5f;
+    public float jumpVelocity = 5f;
+    public int doubleJump = 1;
+
+    //Temporary variables
+    private int doubleJumpLeft = 1;
+    
     //Importing character components
     //
     #endregion
 
     #region Custom Methods
-    private void UpdateMovement()
+    protected override void ComputeVelocity()
     {
-        //character.animator.SetBool("Walking", false); //Resets walking animation to idle
+        Vector2 move = Vector2.zero;
 
-        if (!character.canMove)
-        { //Return if player can't move
-            return;
-        }
-        else
+        move.x = Input.GetAxis("Horizontal");
+
+        if(Input.GetButtonDown("Jump") && doubleJumpLeft > 0)
         {
-            Move();
+            velocity.y = jumpTakeOffSpeed;
+            doubleJumpLeft -= 1;
         }
-        
-    }
-
-
-    private void Move()
-    {
-        if (character.doubleJump > 0 && Input.GetKeyDown(KeyCode.Space))
-        { //Drop bomb
-            Jump();
-        }
-
-        if (Input.GetKey(KeyCode.W))
+        else if (Input.GetButtonUp("Jump"))
         {
+            if(velocity.y > 0)
+            {
+                velocity.y = velocity.y * jumpCancelModifier;
+            }
         }
 
-        if (Input.GetKey(KeyCode.A))
-        { //Left movement
-            character.rigidBody.velocity = new Vector3(-character.moveSpeed, character.rigidBody.velocity.y, 0);
-            character.myTransform.rotation = Quaternion.Euler(0, 270, 0);
-            //character.animator.SetBool("Walking", true);
+        if (grounded)
+        {
+            doubleJumpLeft = doubleJump;
         }
 
-        if (Input.GetKey(KeyCode.S))
-        { //Crouch
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        { //Right movement
-            character.rigidBody.velocity = new Vector3(character.moveSpeed, character.rigidBody.velocity.y, 0);
-            character.myTransform.rotation = Quaternion.Euler(0, 90, 0);
-            //character.animator.SetBool("Walking", true);
-        }
-
-        
-    }
-    
-
-    void Jump()
-    {
-        character.rigidBody.velocity = Vector3.up * character.jumpVelocity;
+        targetVelocity = move * moveSpeed;
     }
     #endregion
 
@@ -74,11 +58,6 @@ public class PlayerController : MonoBehaviour {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-        Move();
-
-    }
 
 	#endregion
 }

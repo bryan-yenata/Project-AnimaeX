@@ -8,7 +8,7 @@ public class BetterJumpPhysics : MonoBehaviour {
     public float fallMultiplier = 2.5f;
     public float shortHopMultiplier = 1.5f;
 
-    Rigidbody rigidBody;
+    Rigidbody2D rigidBody;
 	#endregion
 
 	#region Custom Methods
@@ -19,17 +19,17 @@ public class BetterJumpPhysics : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-        rigidBody = GetComponent<Rigidbody>();
+        rigidBody = GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(rigidBody.velocity.y < 0)
         {
-            rigidBody.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            rigidBody.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         } else if(rigidBody.velocity.y > 0 && !Input.GetButton("Jump"))
         {
-            rigidBody.velocity += Vector3.up * Physics.gravity.y * (shortHopMultiplier - 1) * Time.deltaTime;
+            rigidBody.velocity += Vector2.up * Physics2D.gravity.y * (shortHopMultiplier - 1) * Time.deltaTime;
         }
 	}   
 
