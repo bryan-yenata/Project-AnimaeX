@@ -8,6 +8,8 @@ public class PhysicsOverride : MonoBehaviour {
     public float gravityModifier = 1f;
     public float minGroundNormalY = 0.65f;
 
+    protected float fixedGravity;
+
     //Protected variables
     protected Vector2 targetVelocity;
     protected bool grounded;
@@ -74,6 +76,8 @@ public class PhysicsOverride : MonoBehaviour {
     {
 
     }
+
+   
     #endregion
 
     #region Unity Methods
@@ -89,10 +93,12 @@ public class PhysicsOverride : MonoBehaviour {
         contactFilter.useTriggers = false;
         contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
         contactFilter.useLayerMask = true;
+
+        fixedGravity = gravityModifier * Physics2D.gravity.y;
     }
 
     // Update is called once per frame
-    void Update () {
+    protected virtual void Update () {
         targetVelocity = Vector2.zero;
         ComputeVelocity();
 	}
@@ -115,7 +121,10 @@ public class PhysicsOverride : MonoBehaviour {
         move = Vector2.up * deltaPosition.y;
 
         Movement(move,true);
+
     }
+
+    
 
     #endregion
 }

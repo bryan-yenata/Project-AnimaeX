@@ -24,7 +24,9 @@ GameObject:
   - component: {fileID: 114248898418508940}
   - component: {fileID: 50075685870317958}
   - component: {fileID: 61247959709939952}
-  - component: {fileID: 114302170719368820}
+  - component: {fileID: 114853052321910522}
+  - component: {fileID: 114182119670111536}
+  - component: {fileID: 114520246562553422}
   m_Layer: 14
   m_Name: Player 2
   m_TagString: Player
@@ -132,6 +134,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114182119670111536
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1046575854521530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e414a83e91bdda941958f8e5232369dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mtCamera: {fileID: 0}
+  topBoundary: 18
+  bottomBoundary: -18
+  leftBoundary: -27
+  rightBoundary: 27
+  charTransform: {fileID: 4374891686223806}
 --- !u!114 &114248898418508940
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -145,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallMultiplier: 2.5
   shortHopMultiplier: 2
---- !u!114 &114302170719368820
+--- !u!114 &114520246562553422
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,7 +172,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1046575854521530}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9505fbdaf54f5e4abea8d14ae8b2354, type: 3}
+  m_Script: {fileID: 11500000, guid: df74a9e620c35064b8fa13acccb8c979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterName: Korra
+  percentage: 0
+  weight: 5
+  moveSpeed: 5
+  jumpVelocity: 8
+  doubleJump: 1
+  skillBar: 0
+  canMove: 1
+  shielding: 0
+  invulnerable: 0
+  shield: {fileID: 1911823348946396, guid: e3e0f35d635b3444f851606719cf1c6f, type: 2}
+  tempShield: {fileID: 0}
+  myTransform: {fileID: 0}
+--- !u!114 &114853052321910522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1046575854521530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc2bb15fe7d7a740b0e1cdda124a8a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gravityModifier: 1
@@ -161,7 +204,6 @@ MonoBehaviour:
   jumpTakeOffSpeed: 7
   jumpCancelModifier: 0.5
   percentage: 0
-  weight: 5
-  moveSpeed: 5
-  jumpVelocity: 5
-  doubleJump: 1
+  stocks: 3
+  character: {fileID: 114520246562553422}
+  playerId: 1
