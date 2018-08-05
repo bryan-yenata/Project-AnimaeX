@@ -1,0 +1,358 @@
+fileFormatVersion: 2
+guid: bff53bf5504d6a24a9991134f775bafb
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Body
+    100004: Breast_L
+    100006: Breast_R
+    100008: //RootNode
+    100010: Chest
+    100012: Eye_L
+    100014: Eye_R
+    100016: Hair1
+    100018: Hair2
+    100020: Hair3
+    100022: Hair4
+    100024: Hair5
+    100026: Hair6
+    100028: Hair7
+    100030: Hair8
+    100032: Hair9
+    100034: Head
+    100036: Hips
+    100038: IndexFinger1_L
+    100040: IndexFinger1_R
+    100042: IndexFinger2_L
+    100044: IndexFinger2_R
+    100046: IndexFinger3_L
+    100048: IndexFinger3_R
+    100050: Left ankle
+    100052: Left arm
+    100054: Left elbow
+    100056: Left knee
+    100058: Left leg
+    100060: Left shoulder
+    100062: Left wrist
+    100064: LeftEye
+    100066: LeftHair1
+    100068: LeftHair2
+    100070: LeftHair3
+    100072: LeftHair4
+    100074: LeftHair5
+    100076: LeftHair6
+    100078: LeftHair7
+    100080: LittleFinger1_L
+    100082: LittleFinger1_R
+    100084: LittleFinger2_L
+    100086: LittleFinger2_R
+    100088: LittleFinger3_L
+    100090: LittleFinger3_R
+    100092: LString1
+    100094: LString2
+    100096: LString3
+    100098: LString4
+    100100: MiddleFinger1_L
+    100102: MiddleFinger1_R
+    100104: MiddleFinger2_L
+    100106: MiddleFinger2_R
+    100108: MiddleFinger3_L
+    100110: MiddleFinger3_R
+    100112: Neck
+    100114: Right ankle
+    100116: Right arm
+    100118: Right elbow
+    100120: Right knee
+    100122: Right leg
+    100124: Right shoulder
+    100126: Right wrist
+    100128: RightEye
+    100130: RightHair1
+    100132: RightHair2
+    100134: RightHair3
+    100136: RightHair4
+    100138: RightHair5
+    100140: RightHair6
+    100142: RightHair7
+    100144: RingFinger1_L
+    100146: RingFinger1_R
+    100148: RingFinger2_L
+    100150: RingFinger2_R
+    100152: RingFinger3_L
+    100154: RingFinger3_R
+    100156: RString1
+    100158: RString2
+    100160: RString3
+    100162: RString4
+    100164: Skirt1
+    100166: Skirt11
+    100168: Skirt12
+    100170: Skirt13
+    100172: Skirt16
+    100174: Skirt17
+    100176: Skirt18
+    100178: Skirt2
+    100180: Skirt21
+    100182: Skirt22
+    100184: Skirt23
+    100186: Skirt26
+    100188: Skirt27
+    100190: Skirt28
+    100192: Skirt31
+    100194: Skirt32
+    100196: Skirt33
+    100198: Skirt36
+    100200: Skirt37
+    100202: Skirt38
+    100204: Skirt41
+    100206: Skirt42
+    100208: Skirt43
+    100210: Skirt46
+    100212: Skirt47
+    100214: Skirt48
+    100216: Skirt51
+    100218: Skirt52
+    100220: Skirt53
+    100222: Skirt56
+    100224: Skirt57
+    100226: Skirt6
+    100228: Skirt7
+    100230: Spine
+    100232: Thumb0_L
+    100234: Thumb0_R
+    100236: Thumb1_L
+    100238: Thumb1_R
+    100240: Thumb2_L
+    100242: Thumb2_R
+    400000: Armature
+    400002: Body
+    400004: Breast_L
+    400006: Breast_R
+    400008: //RootNode
+    400010: Chest
+    400012: Eye_L
+    400014: Eye_R
+    400016: Hair1
+    400018: Hair2
+    400020: Hair3
+    400022: Hair4
+    400024: Hair5
+    400026: Hair6
+    400028: Hair7
+    400030: Hair8
+    400032: Hair9
+    400034: Head
+    400036: Hips
+    400038: IndexFinger1_L
+    400040: IndexFinger1_R
+    400042: IndexFinger2_L
+    400044: IndexFinger2_R
+    400046: IndexFinger3_L
+    400048: IndexFinger3_R
+    400050: Left ankle
+    400052: Left arm
+    400054: Left elbow
+    400056: Left knee
+    400058: Left leg
+    400060: Left shoulder
+    400062: Left wrist
+    400064: LeftEye
+    400066: LeftHair1
+    400068: LeftHair2
+    400070: LeftHair3
+    400072: LeftHair4
+    400074: LeftHair5
+    400076: LeftHair6
+    400078: LeftHair7
+    400080: LittleFinger1_L
+    400082: LittleFinger1_R
+    400084: LittleFinger2_L
+    400086: LittleFinger2_R
+    400088: LittleFinger3_L
+    400090: LittleFinger3_R
+    400092: LString1
+    400094: LString2
+    400096: LString3
+    400098: LString4
+    400100: MiddleFinger1_L
+    400102: MiddleFinger1_R
+    400104: MiddleFinger2_L
+    400106: MiddleFinger2_R
+    400108: MiddleFinger3_L
+    400110: MiddleFinger3_R
+    400112: Neck
+    400114: Right ankle
+    400116: Right arm
+    400118: Right elbow
+    400120: Right knee
+    400122: Right leg
+    400124: Right shoulder
+    400126: Right wrist
+    400128: RightEye
+    400130: RightHair1
+    400132: RightHair2
+    400134: RightHair3
+    400136: RightHair4
+    400138: RightHair5
+    400140: RightHair6
+    400142: RightHair7
+    400144: RingFinger1_L
+    400146: RingFinger1_R
+    400148: RingFinger2_L
+    400150: RingFinger2_R
+    400152: RingFinger3_L
+    400154: RingFinger3_R
+    400156: RString1
+    400158: RString2
+    400160: RString3
+    400162: RString4
+    400164: Skirt1
+    400166: Skirt11
+    400168: Skirt12
+    400170: Skirt13
+    400172: Skirt16
+    400174: Skirt17
+    400176: Skirt18
+    400178: Skirt2
+    400180: Skirt21
+    400182: Skirt22
+    400184: Skirt23
+    400186: Skirt26
+    400188: Skirt27
+    400190: Skirt28
+    400192: Skirt31
+    400194: Skirt32
+    400196: Skirt33
+    400198: Skirt36
+    400200: Skirt37
+    400202: Skirt38
+    400204: Skirt41
+    400206: Skirt42
+    400208: Skirt43
+    400210: Skirt46
+    400212: Skirt47
+    400214: Skirt48
+    400216: Skirt51
+    400218: Skirt52
+    400220: Skirt53
+    400222: Skirt56
+    400224: Skirt57
+    400226: Skirt6
+    400228: Skirt7
+    400230: Spine
+    400232: Thumb0_L
+    400234: Thumb0_R
+    400236: Thumb1_L
+    400238: Thumb1_R
+    400240: Thumb2_L
+    400242: Thumb2_R
+    2100000: Material 9
+    2100002: Material 22
+    2100004: Material 21
+    2100006: Material 20
+    2100008: Material 19
+    2100010: Material 18
+    2100012: Material 16
+    2100014: Material 15
+    2100016: Material 14
+    2100018: Material 13
+    2100020: Material 12
+    2100022: Material 11
+    2100024: Material 10
+    2100026: Material 8
+    2100028: Material 7
+    2100030: Material 6
+    2100032: Material 5
+    2100034: Material 4
+    2100036: Material 3
+    2100038: Material 2
+    2100040: Material 1
+    2100042: Material 23
+    4300000: Body
+    7400000: mixamo.com
+    9500000: //RootNode
+    13700000: Body
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
