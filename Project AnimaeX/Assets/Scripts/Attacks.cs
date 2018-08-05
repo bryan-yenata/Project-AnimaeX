@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackResult : MonoBehaviour {
+public class Attacks : MonoBehaviour {
 
 	#region Variables
 	
 	#endregion
 
 	#region Custom Methods
-    public AttackResult()
+    public void Jab()
     {
 
     }

@@ -16,6 +16,7 @@ public class PlayerController : PhysicsOverride {
 
     //Character components
     public CharacterParameters character;
+    public Animator animator;
 
     //Rewired
     public int playerId;
@@ -32,8 +33,38 @@ public class PlayerController : PhysicsOverride {
         {
             move.x = player.GetAxis("Horizontal");
 
+            //Crouching
+            if (player.GetAxis("Vertical") < 0)
+            {
+                animator.SetBool("crouch", true);
+            }
+            else
+            {
+                animator.SetBool("crouch", false);
+            }
+
+            //Moving
+            if (Mathf.Abs(move.x) >= 0.5 && grounded)
+            {
+                animator.SetBool("run", true);
+                character.running = true;
+            }
+            else if (Mathf.Abs(move.x) > 0 && Mathf.Abs(move.x) < 0.5 && grounded)
+            {
+                animator.SetBool("walk", true);
+            }
+            else
+            {
+                animator.SetBool("run", false);
+                character.running = false;
+                animator.SetBool("walk", false);
+            }
+
+            
+            //Jumping
             if (player.GetButtonDown("Jump") && doubleJumpLeft > 0)
             {
+                animator.SetBool("jump", true);
                 velocity.y = character.jumpVelocity;
                 doubleJumpLeft -= 1;
             }
@@ -47,17 +78,32 @@ public class PlayerController : PhysicsOverride {
 
             if (grounded)
             {
+                animator.SetBool("jump", false);
                 doubleJumpLeft = character.doubleJump;
             }
 
-            targetVelocity = move * character.moveSpeed;
+
+
+
+            
         }
 
         else if (character.shielding)
         {
-
+            if (player.GetAxis("Horizontal")>0 && character.rollDodging == false)
+            {
+                animator.SetTrigger("roll_dodge");
+                move = new Vector2(3,0);
+            }
+            else if(player.GetAxis("Horizontal")<0 && character.rollDodging == false)
+            {
+                animator.SetTrigger("roll_dodge");
+                move = new Vector2(-3, 0);
+            }
         }
-        
+
+        targetVelocity = move * character.moveSpeed;
+
     }
 
     void KnockBack(Vector2 knockback)
@@ -69,6 +115,7 @@ public class PlayerController : PhysicsOverride {
     {
         if (player.GetButtonDown("Shield") && grounded)
         {
+            Debug.Log("Shielding");
             character.canMove = false;
             character.shielding = true;
             character.tempShield = Instantiate(character.shield, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
@@ -85,6 +132,36 @@ public class PlayerController : PhysicsOverride {
 
 
 
+    }
+    
+    void Attack()
+    {
+        // Jab
+        if (player.GetButtonDown("Normal Attack") && grounded)
+        {
+            
+        }
+    }
+
+    void Flip()
+    {
+        if(player.GetAxis("Horizontal") < 0)
+        {
+            character.lookLeft = true;
+        }
+        else if(player.GetAxis("Horizontal") > 0)
+        {
+            character.lookLeft = false;
+        }
+
+        if (character.lookLeft)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
     #endregion
 
@@ -119,6 +196,8 @@ public class PlayerController : PhysicsOverride {
         base.Update();
 
         Shield();
+        Attack();
+        Flip();
     }
 }
     

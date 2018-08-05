@@ -20,6 +20,10 @@ public class CharacterParameters : MonoBehaviour {
     public bool canMove = true;
     public bool shielding = false;
     public bool invulnerable = false;
+    public bool onAir = false;
+    public bool running = false;
+    public bool lookLeft = false;
+    public bool rollDodging = false;
 
     //Prefabs
     public GameObject shield;

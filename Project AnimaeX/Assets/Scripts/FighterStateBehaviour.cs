@@ -16,11 +16,11 @@ public class FighterStateBehaviour : StateMachineBehaviour {
             fighter = animator.gameObject.GetComponent<Fighter>();
         }
 
-        fighter.body.AddRelativeForce(new Vector3(0, verticalForce, 0));
+        //fighter.body.AddRelativeForce(new Vector3(0, verticalForce, 0));
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        fighter.body.AddRelativeForce(new Vector3(horizontalForce, 0, 0));
+        //fighter.body.AddRelativeForce(new Vector3(horizontalForce, 0, 0));
     }
 }
