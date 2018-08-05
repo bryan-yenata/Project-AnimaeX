@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : PhysicsOverride {
+public class Player2Controller : PhysicsOverride {
 
     #region Variables
     public float jumpTakeOffSpeed = 7f;
@@ -10,16 +10,10 @@ public class PlayerController : PhysicsOverride {
 
     //Character parameters
     public float percentage = 0.0f;
-    public float weight = 5f;
-    public float moveSpeed = 5f;
-    public float jumpVelocity = 5f;
-    public int doubleJump = 1;
-
-    //Temporary variables
     private int doubleJumpLeft = 1;
-    
+
     //Importing character components
-    //
+    CharacterParameters character;
     #endregion
 
     #region Custom Methods
@@ -44,10 +38,10 @@ public class PlayerController : PhysicsOverride {
 
         if (grounded)
         {
-            doubleJumpLeft = doubleJump;
+            doubleJumpLeft = character.doubleJump;
         }
 
-        targetVelocity = move * moveSpeed;
+        targetVelocity = move * character.moveSpeed;
     }
     #endregion
 

@@ -21,14 +21,13 @@ GameObject:
   - component: {fileID: 4374891686223806}
   - component: {fileID: 33917703940299612}
   - component: {fileID: 23921719275711100}
-  - component: {fileID: 114051220767704738}
   - component: {fileID: 114248898418508940}
   - component: {fileID: 50075685870317958}
   - component: {fileID: 61247959709939952}
-  - component: {fileID: 114221403795421006}
-  m_Layer: 0
+  - component: {fileID: 114302170719368820}
+  m_Layer: 14
   m_Name: Player 2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,43 +132,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114051220767704738
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1046575854521530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fc2bb15fe7d7a740b0e1cdda124a8a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gravityModifier: 1
-  minGroundNormalY: 0.65
-  character: {fileID: 0}
---- !u!114 &114221403795421006
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1046575854521530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51ea972dba6919d448e426a8632cc354, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  percentage: 0
-  weight: 5
-  moveSpeed: 5
-  jumpVelocity: 5
-  doubleJump: 1
-  canMove: 1
-  lookLeft: {x: 0, y: 0, z: 0, w: 0}
-  lookRight: {x: 0, y: 0, z: 0, w: 0}
-  moveDirection: {x: 0, y: 0, z: 0}
-  rigidBody: {fileID: 0}
-  myTransform: {fileID: 0}
-  characterController: {fileID: 0}
 --- !u!114 &114248898418508940
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -183,3 +145,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallMultiplier: 2.5
   shortHopMultiplier: 2
+--- !u!114 &114302170719368820
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1046575854521530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9505fbdaf54f5e4abea8d14ae8b2354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityModifier: 1
+  minGroundNormalY: 0.65
+  jumpTakeOffSpeed: 7
+  jumpCancelModifier: 0.5
+  percentage: 0
+  weight: 5
+  moveSpeed: 5
+  jumpVelocity: 5
+  doubleJump: 1

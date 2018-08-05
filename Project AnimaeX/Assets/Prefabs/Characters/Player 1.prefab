@@ -25,10 +25,9 @@ GameObject:
   - component: {fileID: 114592819240675782}
   - component: {fileID: 50146523112646694}
   - component: {fileID: 61704159385527862}
-  - component: {fileID: 114762585348720616}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Player 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,7 +145,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityModifier: 1
   minGroundNormalY: 0.65
-  character: {fileID: 0}
+  jumpTakeOffSpeed: 7
+  jumpCancelModifier: 0.5
+  percentage: 0
+  weight: 5
+  moveSpeed: 5
+  jumpVelocity: 5
+  doubleJump: 1
 --- !u!114 &114592819240675782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,26 +165,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallMultiplier: 2.5
   shortHopMultiplier: 2
---- !u!114 &114762585348720616
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1879592835899558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51ea972dba6919d448e426a8632cc354, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  percentage: 0
-  weight: 5
-  moveSpeed: 5
-  jumpVelocity: 5
-  doubleJump: 1
-  canMove: 1
-  lookLeft: {x: 0, y: 0, z: 0, w: 0}
-  lookRight: {x: 0, y: 0, z: 0, w: 0}
-  moveDirection: {x: 0, y: 0, z: 0}
-  rigidBody: {fileID: 0}
-  myTransform: {fileID: 0}
-  characterController: {fileID: 0}
