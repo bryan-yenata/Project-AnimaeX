@@ -150,6 +150,78 @@ public class PlayerController : PhysicsOverride {
     
     void Attack()
     {
+        // Side Tilt
+        if (player.GetAxis("Horizontal") > 0 && player.GetAxis("Horizontal") < 0.3 && player.GetButtonDown("Normal Attack") && grounded && character.jabOnce == false)
+        {
+            Debug.Log("Punch");
+            character.tempHitbox = Instantiate(character.hitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
+            character.tempHitbox.transform.parent = gameObject.transform;
+
+            character.tempHitbox.transform.position = gameObject.transform.position;
+            //character.tempHitbox.transform.position += new Vector3(0, 1, 0);
+
+            character.canMove = false;
+            animator.SetTrigger("side_tilt");
+
+            character.jabOnce = true;
+
+
+        }
+
+        // Down Tilt
+        if (player.GetAxis("Vertical") < 0 && player.GetAxis("Vertical") > -0.3 && player.GetButtonDown("Normal Attack") && grounded && character.jabOnce == false)
+        {
+            Debug.Log("Punch");
+            character.tempHitbox = Instantiate(character.hitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
+            character.tempHitbox.transform.parent = gameObject.transform;
+
+            character.tempHitbox.transform.position = gameObject.transform.position;
+            //character.tempHitbox.transform.position += new Vector3(0, 1, 0);
+
+            character.canMove = false;
+            animator.SetTrigger("down_tilt");
+
+            character.jabOnce = true;
+
+
+        }
+
+        // Up Tilt
+        if (player.GetAxis("Vertical") > 0 && player.GetAxis("Vertical") < 0.3 && player.GetButtonDown("Normal Attack") && grounded && character.jabOnce == false)
+        {
+            Debug.Log("Punch");
+            character.tempHitbox = Instantiate(character.hitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
+            character.tempHitbox.transform.parent = gameObject.transform;
+
+            character.tempHitbox.transform.position = gameObject.transform.position;
+            //character.tempHitbox.transform.position += new Vector3(0, 1, 0);
+
+            character.canMove = false;
+            animator.SetTrigger("up_tilt");
+
+            character.jabOnce = true;
+
+
+        }
+
+        // Nair
+        if (player.GetButtonDown("Normal Attack") && !grounded && character.jabOnce == false)
+        {
+            Debug.Log("Punch");
+            character.tempHitbox = Instantiate(character.hitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
+            character.tempHitbox.transform.parent = gameObject.transform;
+
+            character.tempHitbox.transform.position = gameObject.transform.position;
+            //character.tempHitbox.transform.position += new Vector3(0, 1, 0);
+
+            character.canMove = false;
+            animator.SetTrigger("neutral_air");
+
+            character.jabOnce = true;
+
+
+        }
+
         // Jab
         if (player.GetButtonDown("Normal Attack") && grounded && character.jabOnce == false)
         {
@@ -173,6 +245,8 @@ public class PlayerController : PhysicsOverride {
             character.jabOnce = false;
             character.canMove = true;
         }
+
+        
     }
 
     void Flip()

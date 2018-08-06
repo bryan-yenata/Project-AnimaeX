@@ -15,6 +15,9 @@ public class BlastZone : MonoBehaviour {
 
     //Game Object transform
     public Transform charTransform;
+
+    public GameObject explode;
+    public GameObject tempExplode;
     #endregion
 
     #region Custom Methods
@@ -33,8 +36,15 @@ public class BlastZone : MonoBehaviour {
 	void Update () {
 		if(charTransform.position.x < leftBoundary || charTransform.position.x > rightBoundary || charTransform.position.y < bottomBoundary || charTransform.position.y > topBoundary)
         {
+
+            tempExplode = Instantiate(explode, new Vector3(0, 0, 0), transform.rotation) as GameObject;
+            tempExplode.transform.position = gameObject.transform.position;
+
             Destroy(gameObject);
             mtCamera.targets.Remove(gameObject.transform);
+            
+
+            Destroy(tempExplode, 2f);
         }
 	}
 
