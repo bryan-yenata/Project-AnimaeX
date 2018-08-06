@@ -8,7 +8,7 @@ public class PlayerController : PhysicsOverride {
     #region Variables
     public float jumpTakeOffSpeed = 7f;
     public float jumpCancelModifier = 0.5f;
-    public Vector2 targetVelocity2;
+    public Vector2 knockback;
 
     //Character parameters
     public float percentage = 0.0f;
@@ -105,15 +105,24 @@ public class PlayerController : PhysicsOverride {
                 move = new Vector2(-3, 0);
             }
         }
-
-        targetVelocity = move * character.moveSpeed;
+        
+        if(knockback == Vector2.zero)
+        {
+            targetVelocity = move * character.moveSpeed;
+        }
+        else if(character.lookLeft)
+        {
+            targetVelocity.x = -knockback.x;
+            targetVelocity.y = knockback.y;
+        }
+        else if (character.lookLeft == false)
+        {
+            targetVelocity.x = knockback.x;
+            targetVelocity.y = knockback.y;
+        }
 
     }
-
-    void KnockBack(Vector2 knockback)
-    {
-        velocity = knockback;
-    }
+    
 
     void Shield()
     {
@@ -151,15 +160,18 @@ public class PlayerController : PhysicsOverride {
             character.tempHitbox.transform.position = gameObject.transform.position;
             //character.tempHitbox.transform.position += new Vector3(0, 1, 0);
 
+            character.canMove = false;
             animator.SetTrigger("punch");
 
             character.jabOnce = true;
+
         
         }
         else if (player.GetButtonUp("Normal Attack") || character.jabOnce == true)
         {
             Destroy(character.tempHitbox);
             character.jabOnce = false;
+            character.canMove = true;
         }
     }
 
@@ -182,6 +194,11 @@ public class PlayerController : PhysicsOverride {
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
+    }
+
+    void Knockback(Vector2 knockback)
+    {
+        targetVelocity = knockback;
     }
     #endregion
 
@@ -212,7 +229,8 @@ public class PlayerController : PhysicsOverride {
 
         if (other.gameObject.CompareTag("Attack"))
         {
-            //velocity.x 
+            knockback = new Vector2(20, 20);
+            velocity.y = 20;
             
         }
     }
@@ -224,6 +242,28 @@ public class PlayerController : PhysicsOverride {
         Shield();
         Attack();
         Flip();
+    }
+
+    protected override void FixedUpdate()
+    {
+        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
+        velocity.x = targetVelocity.x;
+
+        grounded = false;
+
+        Vector2 deltaPosition = velocity * Time.deltaTime;
+
+        Vector2 moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
+
+        Vector2 move = moveAlongGround * deltaPosition.x;
+
+        Movement(move, false);
+
+        move = Vector2.up * deltaPosition.y;
+
+        Movement(move, true);
+
+
     }
 }
     

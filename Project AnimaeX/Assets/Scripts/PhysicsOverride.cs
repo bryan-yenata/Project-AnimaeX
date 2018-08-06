@@ -27,7 +27,7 @@ public class PhysicsOverride : MonoBehaviour {
     #endregion
 
     #region Custom Methods
-    void Movement(Vector2 move, bool yMovement)
+    protected void Movement(Vector2 move, bool yMovement)
     {
         float distance = move.magnitude;
 
@@ -103,7 +103,7 @@ public class PhysicsOverride : MonoBehaviour {
         ComputeVelocity();
 	}
 
-    void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
         velocity.x = targetVelocity.x;
