@@ -1669,6 +1669,7 @@ MonoBehaviour:
   minGroundNormalY: 0.65
   jumpTakeOffSpeed: 7
   jumpCancelModifier: 0.5
+  knockback: {x: 0, y: 0}
   percentage: 0
   stocks: 3
   character: {fileID: 114125724512127906}
@@ -1691,6 +1692,8 @@ MonoBehaviour:
   leftBoundary: -27
   rightBoundary: 27
   charTransform: {fileID: 4554296439642748}
+  explode: {fileID: 1756172045961952, guid: 4fdc936f7f8c54caa8b99a790e61fa3a, type: 2}
+  tempExplode: {fileID: 0}
 --- !u!114 &114125724512127906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1716,6 +1719,8 @@ MonoBehaviour:
   running: 0
   lookLeft: 0
   rollDodging: 0
+  jabOnce: 0
+  attacked: 0
   shield: {fileID: 1911823348946396, guid: e3e0f35d635b3444f851606719cf1c6f, type: 2}
   tempShield: {fileID: 0}
   hitbox: {fileID: 1874643678942006, guid: 8c56df87fbaad484c842d5c492a9041f, type: 2}
