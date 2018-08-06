@@ -35,12 +35,6 @@ public class Korra : CharacterParameters {
         characterName = "Korra";
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Attack"))
-        {
-            //float knockbackMagnitude = KnockbackMagnitude(percentage, );
-        }
-    }
+    
     #endregion
 }

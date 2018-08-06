@@ -24,10 +24,14 @@ public class CharacterParameters : MonoBehaviour {
     public bool running = false;
     public bool lookLeft = false;
     public bool rollDodging = false;
+    public bool jabOnce = false;
+    public bool attacked = false;
 
     //Prefabs
     public GameObject shield;
     public GameObject tempShield;
+    public GameObject hitbox;
+    public GameObject tempHitbox;
 
     //Cached components
     public Transform myTransform;

@@ -8,6 +8,7 @@ public class PlayerController : PhysicsOverride {
     #region Variables
     public float jumpTakeOffSpeed = 7f;
     public float jumpCancelModifier = 0.5f;
+    public Vector2 targetVelocity2;
 
     //Character parameters
     public float percentage = 0.0f;
@@ -47,11 +48,14 @@ public class PlayerController : PhysicsOverride {
             if (Mathf.Abs(move.x) >= 0.5 && grounded)
             {
                 animator.SetBool("run", true);
+                animator.SetBool("walk", false);
                 character.running = true;
             }
             else if (Mathf.Abs(move.x) > 0 && Mathf.Abs(move.x) < 0.5 && grounded)
             {
+                character.running = false;
                 animator.SetBool("walk", true);
+                animator.SetBool("run", false);
             }
             else
             {
@@ -122,6 +126,7 @@ public class PlayerController : PhysicsOverride {
             character.tempShield.transform.parent = gameObject.transform;
 
             character.tempShield.transform.position = gameObject.transform.position;
+            character.tempShield.transform.position += new Vector3(0, 1, 0);
         }
         else if (player.GetButtonUp("Shield"))
         {
@@ -137,9 +142,24 @@ public class PlayerController : PhysicsOverride {
     void Attack()
     {
         // Jab
-        if (player.GetButtonDown("Normal Attack") && grounded)
+        if (player.GetButtonDown("Normal Attack") && grounded && character.jabOnce == false)
         {
-            
+            Debug.Log("Punch");
+            character.tempHitbox = Instantiate(character.hitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
+            character.tempHitbox.transform.parent = gameObject.transform;
+
+            character.tempHitbox.transform.position = gameObject.transform.position;
+            //character.tempHitbox.transform.position += new Vector3(0, 1, 0);
+
+            animator.SetTrigger("punch");
+
+            character.jabOnce = true;
+        
+        }
+        else if (player.GetButtonUp("Normal Attack") || character.jabOnce == true)
+        {
+            Destroy(character.tempHitbox);
+            character.jabOnce = false;
         }
     }
 
@@ -188,6 +208,12 @@ public class PlayerController : PhysicsOverride {
 
             else
                 velocity.y = -velocity.y;
+        }
+
+        if (other.gameObject.CompareTag("Attack"))
+        {
+            //velocity.x 
+            
         }
     }
 

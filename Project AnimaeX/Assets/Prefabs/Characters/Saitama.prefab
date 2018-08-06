@@ -1712,8 +1712,14 @@ MonoBehaviour:
   canMove: 1
   shielding: 0
   invulnerable: 0
+  onAir: 0
+  running: 0
+  lookLeft: 0
+  rollDodging: 0
   shield: {fileID: 1911823348946396, guid: e3e0f35d635b3444f851606719cf1c6f, type: 2}
   tempShield: {fileID: 0}
+  hitbox: {fileID: 1874643678942006, guid: 8c56df87fbaad484c842d5c492a9041f, type: 2}
+  tempHitbox: {fileID: 0}
   myTransform: {fileID: 0}
 --- !u!137 &137046865834778440
 SkinnedMeshRenderer:
