@@ -10,9 +10,29 @@ public class Main : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void PlayGame2()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+    }
+
+    public void PlayGame3()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+    }
+
+    public void PlayGame4()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 4);
+    }
     public void QuitGame ()
     {
         Debug.Log("Quit!");
         Application.Quit();
+    }
+
+    public void GoMenu()
+    {
+        Debug.Log("GO MENU");
+        SceneManager.LoadScene(0);
     }
 }

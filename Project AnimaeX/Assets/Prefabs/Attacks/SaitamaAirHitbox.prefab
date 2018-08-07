@@ -104,9 +104,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackName: 
-  d: 5
+  d: 3
   b: 5
-  xDir: 0
+  xDir: 1
   yDir: 1
   left: 0
   knockbackDuration: 1

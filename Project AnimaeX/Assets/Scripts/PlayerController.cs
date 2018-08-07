@@ -26,7 +26,7 @@ public class PlayerController : PhysicsOverride {
     //Character components
     public CharacterParameters character;
     public Animator animator;
-    public Rigidbody2D rigidbody;
+    public Rigidbody2D myRigidBody;
 
     //Rewired
     public int playerId;
@@ -40,7 +40,7 @@ public class PlayerController : PhysicsOverride {
     #endregion
 
     #region Custom Methods
-    /*
+    
     protected override void ComputeVelocity()
     {
         Vector2 move = Vector2.zero;
@@ -75,7 +75,7 @@ public class PlayerController : PhysicsOverride {
             {
                 animator.SetBool("jump", true);
                 velocity.y = character.jumpVelocity;
-                rigidbody.AddForce(Vector2.up);
+                //myRigidBody.AddForce(new Vector2(0, character.jumpVelocity));
                 doubleJumpLeft -= 1;
                 character.onAir = true;
             }
@@ -103,24 +103,34 @@ public class PlayerController : PhysicsOverride {
             if (player.GetAxis("Horizontal")>0 && character.rollDodging == false)
             {
                 animator.SetTrigger("roll_dodge");
-                move = new Vector2(3,0);
+                move = new Vector2(2,0);
             }
             else if(player.GetAxis("Horizontal")<0 && character.rollDodging == false)
             {
                 animator.SetTrigger("roll_dodge");
-                move = new Vector2(-3, 0);
+                move = new Vector2(-2, 0);
             }
         }
         
         targetVelocity = move * character.moveSpeed;
     }
-    */
+    
 
     //Move and Movement v2 (for rigidbody)
 
     void Move()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * character.moveSpeed;
+        
+    }
+    /*
+    void Movement()
+    {
+        // Move the character by finding the target velocity
+        Vector3 targetVelocity = new Vector2(horizontalMove * Time.fixedDeltaTime * 10f, myRigidBody.velocity.y);
+        // And then smoothing it out and applying it to the character
+        myRigidBody.velocity = Vector2.SmoothDamp(myRigidBody.velocity, targetVelocity, ref velocity, movementSmoothing);
+
+        horizontalMove = Input.GetAxis("Horizontal") * character.moveSpeed;
 
         if (character.canMove == true)
         {
@@ -128,12 +138,14 @@ public class PlayerController : PhysicsOverride {
             //Moving
             if (player.GetAxis("Horizontal") >= 0.5 && grounded)
             {
+                Debug.Log("Running");
                 animator.SetBool("run", true);
                 animator.SetBool("walk", false);
                 character.running = true;
             }
             else if (player.GetAxis("Horizontal") > 0 && player.GetAxis("Horizontal") < 0.5 && grounded)
             {
+                Debug.Log("Walking");
                 character.running = false;
                 animator.SetBool("walk", true);
                 animator.SetBool("run", false);
@@ -158,7 +170,27 @@ public class PlayerController : PhysicsOverride {
             }
 
 
-            
+            //Jumping
+            if (player.GetButtonDown("Jump") && doubleJumpLeft >= 0)
+            {
+                animator.SetBool("jump", true);
+                myRigidBody.AddForce(new Vector2(0, character.jumpVelocity));
+                doubleJumpLeft -= 1;
+                character.onAir = true;
+            }
+            else if (player.GetButtonUp("Jump"))
+            {
+                if (myRigidBody.velocity.y > 0)
+                {
+                    myRigidBody.velocity += Vector2.up * Physics2D.gravity.y * (shortHopMultiplier - 1) * Time.deltaTime;
+                }
+            }
+
+            else if (character.onAir == false)
+            {
+                animator.SetBool("jump", false);
+                doubleJumpLeft = character.doubleJump;
+            }
 
         }
 
@@ -167,48 +199,23 @@ public class PlayerController : PhysicsOverride {
             if (player.GetAxis("Horizontal") > 0 && character.rollDodging == false)
             {
                 animator.SetTrigger("roll_dodge");
-                rigidbody.AddForce(new Vector2(10, 0));
+                myRigidBody.AddForce(new Vector2(10, 0));
 
             }
             else if (player.GetAxis("Horizontal") < 0 && character.rollDodging == false)
             {
                 animator.SetTrigger("roll_dodge");
-                rigidbody.AddForce(new Vector2(-10, 0));
-            }
-        }
-    }
-
-    void Movement()
-    {
-        // Move the character by finding the target velocity
-        Vector3 targetVelocity = new Vector2(horizontalMove * Time.fixedDeltaTime * 10f, rigidbody.velocity.y);
-        // And then smoothing it out and applying it to the character
-        rigidbody.velocity = Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref velocity, movementSmoothing);
-
-        //Jumping
-        if (player.GetButtonDown("Jump") && doubleJumpLeft >= 0)
-        {
-            animator.SetBool("jump", true);
-            rigidbody.AddForce(new Vector2(0, character.jumpVelocity));
-            doubleJumpLeft -= 1;
-            character.onAir = true;
-        }
-        else if (player.GetButtonUp("Jump"))
-        {
-            if (rigidbody.velocity.y > 0)
-            {
-                rigidbody.velocity += Vector2.up * Physics2D.gravity.y * (shortHopMultiplier - 1) * Time.deltaTime;
+                myRigidBody.AddForce(new Vector2(-10, 0));
             }
         }
 
-        else if (character.onAir == false)
-        {
-            animator.SetBool("jump", false);
-            doubleJumpLeft = character.doubleJump;
-        }
 
 
     }
+    */
+
+    
+
 
     void Shield()
     {
@@ -304,19 +311,29 @@ public class PlayerController : PhysicsOverride {
         {
             Debug.Log("Neutral B");
             attacked = true;
-            character.tempBHitbox = Instantiate(character.bHitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
-            character.tempBHitbox.transform.parent = gameObject.transform;
+            
+            character.tempBHitbox = Instantiate(character.bHitbox, gameObject.transform.position, transform.rotation) as GameObject;
+
+            
+            //character.tempBHitbox.transform.parent = gameObject.transform;
             if (character.lookLeft == true)
             {
-                character.tempBHitbox.GetComponent<Attacks>().left = true;
+                character.tempBHitbox.GetComponent<Projectiles>().left = true;
+                character.tempBHitbox.transform.position -= new Vector3(4, 0, 0);
+                //character.tempBHitbox.transform.position = gameObject.transform.position;
+                //character.tempBHitbox.GetComponent<Rigidbody2D>().AddForce(new Vector2(-15,0));
+                //character.tempBHitbox.transform.rotation = gameObject.transform.rotation;
             }
             else if (character.lookLeft == false)
             {
-                character.tempBHitbox.GetComponent<Attacks>().left = false;
+                character.tempBHitbox.GetComponent<Projectiles>().left = false;
+                character.tempBHitbox.transform.position += new Vector3(4, 0, 0);
+                //character.tempBHitbox.transform.position = gameObject.transform.position;
+                //character.tempBHitbox.GetComponent<Rigidbody2D>().AddForce(new Vector2(15, 0));
+                //character.tempBHitbox.transform.rotation = gameObject.transform.rotation;
             }
+            
 
-            character.tempBHitbox.transform.position = gameObject.transform.position;
-            character.tempBHitbox.transform.rotation = gameObject.transform.rotation;
 
             character.canMove = false;
             animator.SetTrigger("neutral_special");
@@ -326,8 +343,7 @@ public class PlayerController : PhysicsOverride {
 
 
             yield return new WaitForSeconds(0.55f);
-
-            Destroy(character.tempBHitbox);
+            
             attacked = false;
             character.canMove = true;
         }
@@ -397,7 +413,7 @@ public class PlayerController : PhysicsOverride {
         }
     }
 
-    /*
+    
     IEnumerator Knockback()
     {
         velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
@@ -425,7 +441,7 @@ public class PlayerController : PhysicsOverride {
         velocity = Vector2.zero;
         hit = false;
     }
-    */
+    
 
     #endregion
 
@@ -469,8 +485,8 @@ public class PlayerController : PhysicsOverride {
 
     protected override void FixedUpdate()
     {
-        Movement();
-        /*
+        //Movement();
+        
             velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
             velocity.x = targetVelocity.x;
 
@@ -493,7 +509,7 @@ public class PlayerController : PhysicsOverride {
                 character.onAir = false;
             }
 
-        */
+        
         /*
         else if (hit)
         {

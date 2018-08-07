@@ -1613,7 +1613,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -1645,7 +1645,7 @@ Animator:
   m_GameObject: {fileID: 1344125571483902}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0755eb534b4dd494db10f47362e885f9, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 85e01b5915ce7a6468ebcae7aa498df6, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1680,7 +1680,7 @@ MonoBehaviour:
   doubleJumpLeft: 1
   character: {fileID: 114125724512127906}
   animator: {fileID: 95639947999098594}
-  rigidbody: {fileID: 50927010866706600}
+  myRigidBody: {fileID: 50927010866706600}
   playerId: 0
   attacked: 0
   hit: 0
@@ -1697,6 +1697,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mtCamera: {fileID: 0}
+  manager: {fileID: 0}
+  player: {fileID: 114013709109378078}
+  character: {fileID: 114125724512127906}
   topBoundary: 18
   bottomBoundary: -18
   leftBoundary: -27
@@ -1719,7 +1722,7 @@ MonoBehaviour:
   percentage: 0
   weight: 70
   moveSpeed: 5
-  jumpVelocity: 10
+  jumpVelocity: 15
   doubleJump: 1
   skillBar: 0
   canMove: 1
@@ -1735,7 +1738,7 @@ MonoBehaviour:
   tempShield: {fileID: 0}
   aHitbox: {fileID: 1874643678942006, guid: f581307685e5f434e92b8402e6dc0412, type: 2}
   tempAHitbox: {fileID: 0}
-  bHitbox: {fileID: 1874643678942006, guid: ff4cb115d4de6eb4da2c0d3693e07515, type: 2}
+  bHitbox: {fileID: 1810025420639380, guid: 650f6be28de0c1d45a200f1db57e4235, type: 2}
   tempBHitbox: {fileID: 0}
   airHitbox: {fileID: 1874643678942006, guid: 87f49bdbfda821a478021f2ef8226fa0, type: 2}
   tempAirHitbox: {fileID: 0}

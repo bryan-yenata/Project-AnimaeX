@@ -6,6 +6,9 @@ public class BlastZone : MonoBehaviour {
 
     #region Variables
     public MultiTargetCamera mtCamera;
+    public GameManager manager;
+    public PlayerController player;
+    public CharacterParameters character;
 
     //Blast Zone position
     public float topBoundary = 18f;
@@ -15,6 +18,7 @@ public class BlastZone : MonoBehaviour {
 
     //Game Object transform
     public Transform charTransform;
+
 
     public GameObject explode;
     public GameObject tempExplode;
@@ -26,6 +30,12 @@ public class BlastZone : MonoBehaviour {
     #region Unity Methods
 
     // Use this for initialization
+    private void Awake()
+    {
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        mtCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MultiTargetCamera>();
+    }
+
     void Start () {
         Debug.Log(mtCamera);
 
@@ -42,9 +52,21 @@ public class BlastZone : MonoBehaviour {
 
             Destroy(gameObject);
             mtCamera.targets.Remove(gameObject.transform);
-            
 
+            
+            if(player.playerId == 0)
+            {
+                manager.p1Stock -= 1;
+                manager.p1Dead = true;
+            }
+
+            else if (player.playerId == 1)
+            {
+                manager.p2Stock -= 1;
+                manager.p2Dead = true;
+            }
             Destroy(tempExplode, 2f);
+            
         }
 	}
 

@@ -27,7 +27,7 @@ public class PhysicsOverride : MonoBehaviour {
     #endregion
 
     #region Custom Methods
-    /*
+    
     protected void Movement(Vector2 move, bool yMovement)
     {
         float distance = move.magnitude;
@@ -71,7 +71,7 @@ public class PhysicsOverride : MonoBehaviour {
         rigidBody.position = rigidBody.position + move.normalized * distance;
 
     }
-    */
+    
 
 
     protected virtual void ComputeVelocity()

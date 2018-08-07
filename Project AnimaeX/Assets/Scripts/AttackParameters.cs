@@ -27,7 +27,7 @@ public class AttackParameters : MonoBehaviour {
          * p = percentage of target
         */
 
-        float result = r * (b + (s * (18f + (1.4f * (200f / w + 100f) * (p + p * (d / 2718))))));
+        float result = r * (b + (s * ( (1.4f * (p + p * (d / 20))))));
         return result;
     }
 
@@ -42,7 +42,7 @@ public class AttackParameters : MonoBehaviour {
          * p = percentage of target
         */
 
-        float result = 1.1f*(0.1f + p) / m;
+        float result = 0.1f * p / m;
         return result;
     }
 

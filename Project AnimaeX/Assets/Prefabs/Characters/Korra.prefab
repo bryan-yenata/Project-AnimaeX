@@ -1299,7 +1299,7 @@ GameObject:
   - component: {fileID: 50983159386975288}
   - component: {fileID: 70976403672582026}
   - component: {fileID: 114328494900572884}
-  - component: {fileID: 114894532451844884}
+  - component: {fileID: 114821440266574234}
   - component: {fileID: 114029634011357728}
   m_Layer: 14
   m_Name: Korra
@@ -3594,19 +3594,19 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1723024134528098}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &70976403672582026
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -3655,7 +3655,7 @@ MonoBehaviour:
   percentage: 0
   weight: 60
   moveSpeed: 5
-  jumpVelocity: 10
+  jumpVelocity: 15
   doubleJump: 1
   skillBar: 0
   canMove: 1
@@ -3671,7 +3671,7 @@ MonoBehaviour:
   tempShield: {fileID: 0}
   aHitbox: {fileID: 1874643678942006, guid: 8c56df87fbaad484c842d5c492a9041f, type: 2}
   tempAHitbox: {fileID: 0}
-  bHitbox: {fileID: 1874643678942006, guid: d6da50f905537554cbc5e6768c5c94a9, type: 2}
+  bHitbox: {fileID: 1092352493634720, guid: 58a5a3e3ad4f6d94aa868a85d89ea51d, type: 2}
   tempBHitbox: {fileID: 0}
   airHitbox: {fileID: 1874643678942006, guid: c382ba665b80531418e35231915b55c6, type: 2}
   tempAirHitbox: {fileID: 0}
@@ -3688,6 +3688,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mtCamera: {fileID: 0}
+  manager: {fileID: 0}
+  player: {fileID: 114821440266574234}
+  character: {fileID: 114029634011357728}
   topBoundary: 18
   bottomBoundary: -18
   leftBoundary: -27
@@ -3695,7 +3698,7 @@ MonoBehaviour:
   charTransform: {fileID: 4694920911570858}
   explode: {fileID: 1756172045961952, guid: 4fdc936f7f8c54caa8b99a790e61fa3a, type: 2}
   tempExplode: {fileID: 0}
---- !u!114 &114894532451844884
+--- !u!114 &114821440266574234
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3711,13 +3714,17 @@ MonoBehaviour:
   grounded: 0
   jumpTakeOffSpeed: 7
   jumpCancelModifier: 0.5
+  shortHopMultiplier: 0.5
   knockback: {x: 0, y: 0}
   knockbackDuration: 0
+  horizontalMove: 0
+  movementSmoothing: 0.05
   percentage: 0
   stocks: 3
   doubleJumpLeft: 1
   character: {fileID: 114029634011357728}
   animator: {fileID: 95624051202471418}
+  myRigidBody: {fileID: 50983159386975288}
   playerId: 1
   attacked: 0
   hit: 0

@@ -9,8 +9,8 @@ public class Attacks : AttackParameters
     public bool left = false;
     public float knockbackDuration;
     public float knockbackMagnitude;
-    Vector2 knockbackDirection;
-    Vector2 knockback;
+    protected Vector2 knockbackDirection;
+    protected Vector2 knockback;
 
     Vector2 playerKnockback;
     bool playerHit;
@@ -48,7 +48,7 @@ public class Attacks : AttackParameters
                     player.percentage, //percentage of target
                     d, //damage of attack
                     player.character.weight, // weight of target
-                    0.1f,  //attack's knockback scaling [FIXED for now]
+                    10f,  //attack's knockback scaling [FIXED for now]
                     b,  //base attack knockback
                     1f); //series of ratio [FIXED to 1 for now]
 
@@ -59,8 +59,10 @@ public class Attacks : AttackParameters
             if (left)
             {
 
-                
-                knockbackDirection.x = -knockbackDirection.x;
+                if(knockbackDirection.x >= 0)
+                {
+                    knockbackDirection.x = -knockbackDirection.x;
+                }
                 knockback = knockbackMagnitude * knockbackDirection;
                 player.knockback = knockbackMagnitude * knockbackDirection;
                 player.knockbackDuration = knockbackDuration;
@@ -70,7 +72,13 @@ public class Attacks : AttackParameters
                 {
                     Debug.Log("HIT");
                 }
+
+                player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 player.GetComponent<Rigidbody2D>().AddForce(knockback);
+                
+
+                Debug.Log("Knockback: "+ knockback);
+                Debug.Log("Duration: " + knockbackDuration);
 
             }
 
@@ -88,7 +96,11 @@ public class Attacks : AttackParameters
                     Debug.Log("HIT");
                 }
 
+                player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 player.GetComponent<Rigidbody2D>().AddForce(knockback);
+
+                Debug.Log("Knockback: " + knockback);
+                Debug.Log("Duration: " + knockbackDuration);
             }
             
         }

@@ -2263,11 +2263,7 @@ AnimatorStateMachine:
     m_Position: {x: 120, y: 528, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102810802888266030}
-<<<<<<< HEAD
     m_Position: {x: 564, y: -276, z: 0}
-=======
-    m_Position: {x: 648, y: -252, z: 0}
->>>>>>> UI
   - serializedVersion: 1
     m_State: {fileID: 1102980757750384840}
     m_Position: {x: 924, y: -264, z: 0}
