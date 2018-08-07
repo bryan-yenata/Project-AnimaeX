@@ -10,6 +10,7 @@ public class Attacks : AttackParameters
     public float knockbackDuration;
     public float knockbackMagnitude;
     Vector2 knockbackDirection;
+    Vector2 knockback;
 
     Vector2 playerKnockback;
     bool playerHit;
@@ -37,6 +38,9 @@ public class Attacks : AttackParameters
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerController player = other.gameObject.GetComponentInChildren<PlayerController>();
+
+            
+            
             player.hit = true;
             playerHit = true;
 
@@ -46,31 +50,47 @@ public class Attacks : AttackParameters
                     player.character.weight, // weight of target
                     0.1f,  //attack's knockback scaling [FIXED for now]
                     b,  //base attack knockback
-                    0.1f); //series of ratio [FIXED to 1 for now]
+                    1f); //series of ratio [FIXED to 1 for now]
 
             knockbackDuration = KnockbackDuration(player.percentage, knockbackMagnitude);
 
+
+            
             if (left)
             {
 
                 
                 knockbackDirection.x = -knockbackDirection.x;
+                knockback = knockbackMagnitude * knockbackDirection;
                 player.knockback = knockbackMagnitude * knockbackDirection;
                 player.knockbackDuration = knockbackDuration;
                 player.percentage += d;
+
+                if (player.GetComponent<Rigidbody2D>())
+                {
+                    Debug.Log("HIT");
+                }
+                player.GetComponent<Rigidbody2D>().AddForce(knockback);
+
             }
 
             else if (!left)
             {
 
-                
+
+                knockback = knockbackMagnitude * knockbackDirection;
                 player.knockback = knockbackMagnitude * knockbackDirection;
                 player.knockbackDuration = knockbackDuration;
                 player.percentage += d;
 
+                if(player.GetComponent<Rigidbody2D>())
+                {
+                    Debug.Log("HIT");
+                }
 
+                player.GetComponent<Rigidbody2D>().AddForce(knockback);
             }
-
+            
         }
     }
 

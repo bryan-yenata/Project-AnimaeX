@@ -8,9 +8,14 @@ public class PlayerController : PhysicsOverride {
     #region Variables
     public float jumpTakeOffSpeed = 7f;
     public float jumpCancelModifier = 0.5f;
+    public float shortHopMultiplier = 0.5f;
     public Vector2 knockback;
     public float knockbackDuration;
-    
+
+    //Movement stuff
+    public float horizontalMove = 0f;
+    [Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;
+
 
 
     //Character parameters
@@ -21,6 +26,7 @@ public class PlayerController : PhysicsOverride {
     //Character components
     public CharacterParameters character;
     public Animator animator;
+    public Rigidbody2D rigidbody;
 
     //Rewired
     public int playerId;
@@ -34,6 +40,7 @@ public class PlayerController : PhysicsOverride {
     #endregion
 
     #region Custom Methods
+    /*
     protected override void ComputeVelocity()
     {
         Vector2 move = Vector2.zero;
@@ -41,16 +48,6 @@ public class PlayerController : PhysicsOverride {
         if(character.canMove == true)
         {
             move.x = player.GetAxis("Horizontal");
-
-            //Crouching
-            if (player.GetAxis("Vertical") < 0)
-            {
-                animator.SetBool("crouch", true);
-            }
-            else
-            {
-                animator.SetBool("crouch", false);
-            }
 
             //Moving
             if (Mathf.Abs(move.x) >= 0.5 && grounded)
@@ -78,6 +75,7 @@ public class PlayerController : PhysicsOverride {
             {
                 animator.SetBool("jump", true);
                 velocity.y = character.jumpVelocity;
+                rigidbody.AddForce(Vector2.up);
                 doubleJumpLeft -= 1;
                 character.onAir = true;
             }
@@ -116,7 +114,101 @@ public class PlayerController : PhysicsOverride {
         
         targetVelocity = move * character.moveSpeed;
     }
-    
+    */
+
+    //Move and Movement v2 (for rigidbody)
+
+    void Move()
+    {
+        horizontalMove = Input.GetAxisRaw("Horizontal") * character.moveSpeed;
+
+        if (character.canMove == true)
+        {
+
+            //Moving
+            if (player.GetAxis("Horizontal") >= 0.5 && grounded)
+            {
+                animator.SetBool("run", true);
+                animator.SetBool("walk", false);
+                character.running = true;
+            }
+            else if (player.GetAxis("Horizontal") > 0 && player.GetAxis("Horizontal") < 0.5 && grounded)
+            {
+                character.running = false;
+                animator.SetBool("walk", true);
+                animator.SetBool("run", false);
+            }
+            if (player.GetAxis("Horizontal") <= 0.5 && grounded)
+            {
+                animator.SetBool("run", true);
+                animator.SetBool("walk", false);
+                character.running = true;
+            }
+            else if (player.GetAxis("Horizontal") < 0 && player.GetAxis("Horizontal") > 0.5 && grounded)
+            {
+                character.running = false;
+                animator.SetBool("walk", true);
+                animator.SetBool("run", false);
+            }
+            else
+            {
+                animator.SetBool("run", false);
+                character.running = false;
+                animator.SetBool("walk", false);
+            }
+
+
+            
+
+        }
+
+        else if (character.shielding)
+        {
+            if (player.GetAxis("Horizontal") > 0 && character.rollDodging == false)
+            {
+                animator.SetTrigger("roll_dodge");
+                rigidbody.AddForce(new Vector2(10, 0));
+
+            }
+            else if (player.GetAxis("Horizontal") < 0 && character.rollDodging == false)
+            {
+                animator.SetTrigger("roll_dodge");
+                rigidbody.AddForce(new Vector2(-10, 0));
+            }
+        }
+    }
+
+    void Movement()
+    {
+        // Move the character by finding the target velocity
+        Vector3 targetVelocity = new Vector2(horizontalMove * Time.fixedDeltaTime * 10f, rigidbody.velocity.y);
+        // And then smoothing it out and applying it to the character
+        rigidbody.velocity = Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref velocity, movementSmoothing);
+
+        //Jumping
+        if (player.GetButtonDown("Jump") && doubleJumpLeft >= 0)
+        {
+            animator.SetBool("jump", true);
+            rigidbody.AddForce(new Vector2(0, character.jumpVelocity));
+            doubleJumpLeft -= 1;
+            character.onAir = true;
+        }
+        else if (player.GetButtonUp("Jump"))
+        {
+            if (rigidbody.velocity.y > 0)
+            {
+                rigidbody.velocity += Vector2.up * Physics2D.gravity.y * (shortHopMultiplier - 1) * Time.deltaTime;
+            }
+        }
+
+        else if (character.onAir == false)
+        {
+            animator.SetBool("jump", false);
+            doubleJumpLeft = character.doubleJump;
+        }
+
+
+    }
 
     void Shield()
     {
@@ -305,6 +397,7 @@ public class PlayerController : PhysicsOverride {
         }
     }
 
+    /*
     IEnumerator Knockback()
     {
         velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
@@ -332,6 +425,7 @@ public class PlayerController : PhysicsOverride {
         velocity = Vector2.zero;
         hit = false;
     }
+    */
 
     #endregion
 
@@ -367,6 +461,7 @@ public class PlayerController : PhysicsOverride {
     {
         base.Update();
 
+        Move();
         Shield();
         Attack();
         Flip();
@@ -374,8 +469,8 @@ public class PlayerController : PhysicsOverride {
 
     protected override void FixedUpdate()
     {
-        if (!hit)
-        {
+        Movement();
+        /*
             velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
             velocity.x = targetVelocity.x;
 
@@ -397,12 +492,14 @@ public class PlayerController : PhysicsOverride {
             {
                 character.onAir = false;
             }
-        }
 
+        */
+        /*
         else if (hit)
         {
-            StartCoroutine(Knockback());            
+            rigidbody.AddForce(knockback);            
         }
+        */
         
     }
 }
