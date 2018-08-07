@@ -43,21 +43,6 @@ public class CharacterParameters : MonoBehaviour {
     #endregion
 
     #region Custom Methods
-    //Knockback related
-    public float KnockbackMagnitude(float p, float d, float w, float s, float b, float r)
-    {
-        /* 
-         * r = series of ratios
-         * b = base attack knockback
-         * s = attack's knockback scaling (also known as knockback growth) divided by 100 (so a scaling of 110 is input as 1.1)
-         * w = weight of target
-         * d = damage of attack
-         * p = percentage of target
-        */
-         
-        float result = r * (b + (s * (18f + (1.4f * (200f / w + 100f) * (p / 10f + p * d / 20f)))));
-        return result;
-    }
 
     //General Movements
     #endregion

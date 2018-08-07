@@ -3653,7 +3653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Korra
   percentage: 0
-  weight: 5
+  weight: 60
   moveSpeed: 5
   jumpVelocity: 10
   doubleJump: 1
@@ -3671,9 +3671,9 @@ MonoBehaviour:
   tempShield: {fileID: 0}
   aHitbox: {fileID: 1874643678942006, guid: 8c56df87fbaad484c842d5c492a9041f, type: 2}
   tempAHitbox: {fileID: 0}
-  bHitbox: {fileID: 1874643678942006, guid: 8c56df87fbaad484c842d5c492a9041f, type: 2}
+  bHitbox: {fileID: 1874643678942006, guid: d6da50f905537554cbc5e6768c5c94a9, type: 2}
   tempBHitbox: {fileID: 0}
-  airHitbox: {fileID: 1874643678942006, guid: 8c56df87fbaad484c842d5c492a9041f, type: 2}
+  airHitbox: {fileID: 1874643678942006, guid: c382ba665b80531418e35231915b55c6, type: 2}
   tempAirHitbox: {fileID: 0}
   myTransform: {fileID: 0}
 --- !u!114 &114328494900572884
@@ -3708,14 +3708,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityModifier: 1
   minGroundNormalY: 0.65
+  grounded: 0
   jumpTakeOffSpeed: 7
   jumpCancelModifier: 0.5
   knockback: {x: 0, y: 0}
+  knockbackDuration: 0
   percentage: 0
   stocks: 3
+  doubleJumpLeft: 1
   character: {fileID: 114029634011357728}
   animator: {fileID: 95624051202471418}
   playerId: 1
+  attacked: 0
+  hit: 0
+  knockbackLeft: 0
 --- !u!137 &137880335879128548
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

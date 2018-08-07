@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114236449100199384}
   - component: {fileID: 23424242487518694}
   m_Layer: 0
-  m_Name: Hitbox
+  m_Name: SaitamaBHitbox
   m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,5 +104,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackName: 
-  d: 999
-  b: 10
+  d: 5
+  b: 5
+  xDir: 0
+  yDir: 1
+  left: 0
+  knockbackDuration: 1
+  knockbackMagnitude: 0

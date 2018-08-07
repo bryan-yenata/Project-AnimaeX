@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0755eb534b4dd494db10f47362e885f9
+guid: db90e598f15a172488aebb3fefaebaa1
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -151,12 +151,7 @@ ModelImporter:
     13700034: Group8081
     13700036: Group9624
     2186277476908879412: ImportLogs
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: be3f9ad57fe346143a4367c1ff9e4ece, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0

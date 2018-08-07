@@ -12,7 +12,7 @@ public class PhysicsOverride : MonoBehaviour {
 
     //Protected variables
     protected Vector2 targetVelocity;
-    protected bool grounded;
+    [SerializeField] protected bool grounded;
     protected Vector2 groundNormal;
     protected Rigidbody2D rigidBody;
     protected Vector2 velocity;
@@ -121,7 +121,7 @@ public class PhysicsOverride : MonoBehaviour {
         move = Vector2.up * deltaPosition.y;
 
         Movement(move,true);
-
+        
     }
 
     

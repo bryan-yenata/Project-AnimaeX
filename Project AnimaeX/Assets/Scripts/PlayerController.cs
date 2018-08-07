@@ -9,13 +9,14 @@ public class PlayerController : PhysicsOverride {
     public float jumpTakeOffSpeed = 7f;
     public float jumpCancelModifier = 0.5f;
     public Vector2 knockback;
+    public float knockbackDuration;
     
 
 
     //Character parameters
     public float percentage = 0.0f;
     public int stocks = 3;
-    private int doubleJumpLeft = 1;
+    public int doubleJumpLeft = 1;
 
     //Character components
     public CharacterParameters character;
@@ -24,6 +25,11 @@ public class PlayerController : PhysicsOverride {
     //Rewired
     public int playerId;
     private Rewired.Player player;
+
+    //Boolean
+    public bool attacked = false;
+    public bool hit = false;
+    public bool knockbackLeft = false;
 
     #endregion
 
@@ -68,11 +74,12 @@ public class PlayerController : PhysicsOverride {
 
             
             //Jumping
-            if (player.GetButtonDown("Jump") && doubleJumpLeft > 0)
+            if (player.GetButtonDown("Jump") && doubleJumpLeft >= 0)
             {
                 animator.SetBool("jump", true);
                 velocity.y = character.jumpVelocity;
                 doubleJumpLeft -= 1;
+                character.onAir = true;
             }
             else if (player.GetButtonUp("Jump"))
             {
@@ -82,7 +89,7 @@ public class PlayerController : PhysicsOverride {
                 }
             }
 
-            if (grounded)
+            else if (character.onAir == false)
             {
                 animator.SetBool("jump", false);
                 doubleJumpLeft = character.doubleJump;
@@ -91,7 +98,6 @@ public class PlayerController : PhysicsOverride {
 
 
 
-            
         }
 
         else if (character.shielding)
@@ -108,21 +114,7 @@ public class PlayerController : PhysicsOverride {
             }
         }
         
-        if(knockback == Vector2.zero)
-        {
-            targetVelocity = move * character.moveSpeed;
-        }
-        else if(character.lookLeft)
-        {
-            targetVelocity.x = -knockback.x;
-            targetVelocity.y = knockback.y;
-        }
-        else if (character.lookLeft == false)
-        {
-            targetVelocity.x = knockback.x;
-            targetVelocity.y = knockback.y;
-        }
-
+        targetVelocity = move * character.moveSpeed;
     }
     
 
@@ -161,7 +153,7 @@ public class PlayerController : PhysicsOverride {
 
 
         // Neutral B
-        if (player.GetButtonDown("Special Attack") && grounded)
+        if (player.GetButtonDown("Special Attack"))
         {
             Debug.Log("IN Neutral B");
             StartCoroutine(NeutralB());
@@ -176,70 +168,113 @@ public class PlayerController : PhysicsOverride {
         }
 
         
+        
     }
 
     //Attacks Coroutines
     IEnumerator Nair()
     {
-        Debug.Log("Nair");
-        character.tempAirHitbox = Instantiate(character.airHitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
-        character.tempAirHitbox.transform.parent = gameObject.transform;
+        if (!attacked)
+        {
+            Debug.Log("Nair");
+            attacked = true;
+            character.tempAirHitbox = Instantiate(character.airHitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
+            character.tempAirHitbox.transform.parent = gameObject.transform;
+            if (character.lookLeft == true)
+            {
+                character.tempAirHitbox.GetComponent<Attacks>().left = true;
+            }
+            else if (character.lookLeft == false)
+            {
+                character.tempAirHitbox.GetComponent<Attacks>().left = false;
+            }
 
-        character.tempAirHitbox.transform.position = gameObject.transform.position;
+            character.tempAirHitbox.transform.position = gameObject.transform.position;
+            character.tempAirHitbox.transform.rotation = gameObject.transform.rotation;
 
-        character.canMove = false;
-        animator.SetTrigger("neutral_air");
+            animator.SetTrigger("aerial_attack");
+
+            animator.SetBool("run", false);
+            character.running = false;
+            animator.SetBool("walk", false);
+
+            yield return new WaitForSeconds(0.75f);
+
+            
+            Destroy(character.tempAirHitbox);
+            attacked = false;
+        }
         
-        animator.SetBool("run", false);
-        character.running = false;
-        animator.SetBool("walk", false);
-
-        yield return new WaitForSeconds(0.5f);
-
-        Destroy(character.tempAirHitbox);
-        character.canMove = true;
     }
     IEnumerator NeutralB()
     {
-        Debug.Log("Neutral B");
-        character.tempBHitbox = Instantiate(character.bHitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
-        character.tempBHitbox.transform.parent = gameObject.transform;
+        if (!attacked)
+        {
+            Debug.Log("Neutral B");
+            attacked = true;
+            character.tempBHitbox = Instantiate(character.bHitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
+            character.tempBHitbox.transform.parent = gameObject.transform;
+            if (character.lookLeft == true)
+            {
+                character.tempBHitbox.GetComponent<Attacks>().left = true;
+            }
+            else if (character.lookLeft == false)
+            {
+                character.tempBHitbox.GetComponent<Attacks>().left = false;
+            }
 
-        character.tempBHitbox.transform.position = gameObject.transform.position;
+            character.tempBHitbox.transform.position = gameObject.transform.position;
+            character.tempBHitbox.transform.rotation = gameObject.transform.rotation;
 
-        character.canMove = false;
-        animator.SetTrigger("neutral_special");
-        animator.SetBool("run", false);
-        character.running = false;
-        animator.SetBool("walk", false);
-        
+            character.canMove = false;
+            animator.SetTrigger("neutral_special");
+            animator.SetBool("run", false);
+            character.running = false;
+            animator.SetBool("walk", false);
 
-        yield return new WaitForSeconds(0.5f);
 
-        Destroy(character.tempBHitbox);
-        character.canMove = true;
+            yield return new WaitForSeconds(0.55f);
+
+            Destroy(character.tempBHitbox);
+            attacked = false;
+            character.canMove = true;
+        }
     }
     IEnumerator Jab()
     {
-        Debug.Log("Jab");
-        character.tempAHitbox = Instantiate(character.aHitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
-        character.tempAHitbox.transform.parent = gameObject.transform;
+        if (!attacked)
+        {
+            Debug.Log("Jab");
+            attacked = true;
+            character.tempAHitbox = Instantiate(character.aHitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
+            character.tempAHitbox.transform.parent = gameObject.transform;
+            if(character.lookLeft == true)
+            {
+                character.tempAHitbox.GetComponent<Attacks>().left = true;
+            }
+            else if (character.lookLeft == false)
+            {
+                character.tempAHitbox.GetComponent<Attacks>().left = false;
+            }
 
-        character.tempAHitbox.transform.position = gameObject.transform.position;
+            character.tempAHitbox.transform.position = gameObject.transform.position;
+            character.tempAHitbox.transform.rotation = gameObject.transform.rotation;
 
-        character.canMove = false;
-        animator.SetTrigger("punch");
-        animator.SetBool("run", false);
-        character.running = false;
-        animator.SetBool("walk", false);
+            character.canMove = false;
+            animator.SetTrigger("punch");
+            animator.SetBool("run", false);
+            character.running = false;
+            animator.SetBool("walk", false);
 
-        character.jabOnce = true;
+            character.jabOnce = true;
 
-        yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
 
-        Destroy(character.tempAHitbox);
-        character.jabOnce = false;
-        character.canMove = true;
+            Destroy(character.tempAHitbox);
+            character.jabOnce = false;
+            character.canMove = true;
+            attacked = false;
+        }
     }
 
 
@@ -254,20 +289,50 @@ public class PlayerController : PhysicsOverride {
             character.lookLeft = false;
         }
 
-        if (character.lookLeft)
+        if (!attacked)
         {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
-        else
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            if (character.lookLeft)
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+
+
+
         }
     }
 
-    void Knockback(Vector2 knockback)
+    IEnumerator Knockback()
     {
-        targetVelocity = knockback;
+        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
+
+        velocity = knockback;
+
+        Debug.Log("Magnitude:" + knockback.magnitude);
+        Debug.Log("Duration:" + knockbackDuration);
+
+        Vector2 deltaPosition = velocity * Time.deltaTime;
+
+        Vector2 moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
+
+        Vector2 move = Vector2.right * deltaPosition.x;
+
+        Movement(move, false);
+
+        move = Vector2.up * deltaPosition.y;
+
+        Movement(move, true);
+
+        yield return new WaitForSeconds(knockbackDuration);
+
+        knockback = Vector2.zero;
+        velocity = Vector2.zero;
+        hit = false;
     }
+
     #endregion
 
     #region Unity Methods
@@ -309,24 +374,36 @@ public class PlayerController : PhysicsOverride {
 
     protected override void FixedUpdate()
     {
-        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
-        velocity.x = targetVelocity.x;
+        if (!hit)
+        {
+            velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
+            velocity.x = targetVelocity.x;
 
-        grounded = false;
+            grounded = false;
 
-        Vector2 deltaPosition = velocity * Time.deltaTime;
+            Vector2 deltaPosition = velocity * Time.deltaTime;
 
-        Vector2 moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
+            Vector2 moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
 
-        Vector2 move = moveAlongGround * deltaPosition.x;
+            Vector2 move = moveAlongGround * deltaPosition.x;
 
-        Movement(move, false);
+            Movement(move, false);
 
-        move = Vector2.up * deltaPosition.y;
+            move = Vector2.up * deltaPosition.y;
 
-        Movement(move, true);
+            Movement(move, true);
 
+            if (grounded)
+            {
+                character.onAir = false;
+            }
+        }
 
+        else if (hit)
+        {
+            StartCoroutine(Knockback());            
+        }
+        
     }
 }
     
