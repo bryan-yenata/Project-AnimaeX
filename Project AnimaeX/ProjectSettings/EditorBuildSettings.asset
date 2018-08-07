@@ -5,25 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Examples/SampleScene.unity
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
-    path: Assets/Scenes/Menu.unity
-    guid: ce7181d0d7da0464a94878370c1e1d2c
-  - enabled: 1
-    path: Assets/Scenes/Stages/AT_FD_Game.unity
-    guid: da99c956197d08d4bb15222b47031184
-  - enabled: 1
-    path: Assets/Scenes/Stages/OPM_FD_Game.unity
-    guid: ff0af7fb5c70b1b44837525c9619124b
-  - enabled: 1
-    path: Assets/Scenes/Stages/SAO_FD_Game.unity
-    guid: feb9bfe7fec20914fbbe6c1566a34baf
-  - enabled: 1
-    path: Assets/Scenes/Stages/LOK_FD_Game.unity
-    guid: c2bd21fa56cedda408eb8e28b3df908a
-  - enabled: 0
-    path: Assets/Scenes/Stages/DEBUG_FD_Game.unity
-    guid: 8caa6ac03b9292c4da66c3616eaf8a79
   m_configObjects: {}
