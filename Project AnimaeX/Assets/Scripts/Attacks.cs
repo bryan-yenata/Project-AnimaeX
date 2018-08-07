@@ -27,8 +27,17 @@ public class Attacks : AttackParameters {
 		
 	}
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.CompareTag("Attack"))
+        {
+            if (other.gameObject.GetComponent<PlayerController>())
+            {
+                Debug.Log(other.gameObject.GetComponent<PlayerController>());
+                Debug.Log(other.gameObject.GetComponent<CharacterParameters>());
+            }
+
+        }
     }
 
     #endregion

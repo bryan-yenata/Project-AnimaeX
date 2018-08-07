@@ -9,6 +9,8 @@ public class PlayerController : PhysicsOverride {
     public float jumpTakeOffSpeed = 7f;
     public float jumpCancelModifier = 0.5f;
     public Vector2 knockback;
+    
+
 
     //Character parameters
     public float percentage = 0.0f;
@@ -150,104 +152,96 @@ public class PlayerController : PhysicsOverride {
     
     void Attack()
     {
-        // Side Tilt
-        if (player.GetAxis("Horizontal") > 0 && player.GetAxis("Horizontal") < 0.3 && player.GetButtonDown("Normal Attack") && grounded && character.jabOnce == false)
-        {
-            Debug.Log("Punch");
-            character.tempHitbox = Instantiate(character.hitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
-            character.tempHitbox.transform.parent = gameObject.transform;
-
-            character.tempHitbox.transform.position = gameObject.transform.position;
-            //character.tempHitbox.transform.position += new Vector3(0, 1, 0);
-
-            character.canMove = false;
-            animator.SetTrigger("side_tilt");
-
-            character.jabOnce = true;
-
-
-        }
-
-        // Down Tilt
-        if (player.GetAxis("Vertical") < 0 && player.GetAxis("Vertical") > -0.3 && player.GetButtonDown("Normal Attack") && grounded && character.jabOnce == false)
-        {
-            Debug.Log("Punch");
-            character.tempHitbox = Instantiate(character.hitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
-            character.tempHitbox.transform.parent = gameObject.transform;
-
-            character.tempHitbox.transform.position = gameObject.transform.position;
-            //character.tempHitbox.transform.position += new Vector3(0, 1, 0);
-
-            character.canMove = false;
-            animator.SetTrigger("down_tilt");
-
-            character.jabOnce = true;
-
-
-        }
-
-        // Up Tilt
-        if (player.GetAxis("Vertical") > 0 && player.GetAxis("Vertical") < 0.3 && player.GetButtonDown("Normal Attack") && grounded && character.jabOnce == false)
-        {
-            Debug.Log("Punch");
-            character.tempHitbox = Instantiate(character.hitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
-            character.tempHitbox.transform.parent = gameObject.transform;
-
-            character.tempHitbox.transform.position = gameObject.transform.position;
-            //character.tempHitbox.transform.position += new Vector3(0, 1, 0);
-
-            character.canMove = false;
-            animator.SetTrigger("up_tilt");
-
-            character.jabOnce = true;
-
-
-        }
-
         // Nair
-        if (player.GetButtonDown("Normal Attack") && !grounded && character.jabOnce == false)
+        if (player.GetButtonDown("Normal Attack") && !grounded)
         {
-            Debug.Log("Punch");
-            character.tempHitbox = Instantiate(character.hitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
-            character.tempHitbox.transform.parent = gameObject.transform;
-
-            character.tempHitbox.transform.position = gameObject.transform.position;
-            //character.tempHitbox.transform.position += new Vector3(0, 1, 0);
-
-            character.canMove = false;
-            animator.SetTrigger("neutral_air");
-
-            character.jabOnce = true;
+            Debug.Log("IN Nair");
+            StartCoroutine(Nair());
+        }
 
 
+        // Neutral B
+        if (player.GetButtonDown("Special Attack") && grounded)
+        {
+            Debug.Log("IN Neutral B");
+            StartCoroutine(NeutralB());
         }
 
         // Jab
-        if (player.GetButtonDown("Normal Attack") && grounded && character.jabOnce == false)
+        if (player.GetButtonDown("Normal Attack") && grounded)
         {
-            Debug.Log("Punch");
-            character.tempHitbox = Instantiate(character.hitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
-            character.tempHitbox.transform.parent = gameObject.transform;
-
-            character.tempHitbox.transform.position = gameObject.transform.position;
-            //character.tempHitbox.transform.position += new Vector3(0, 1, 0);
-
-            character.canMove = false;
-            animator.SetTrigger("punch");
-
-            character.jabOnce = true;
-
-        
-        }
-        else if (player.GetButtonUp("Normal Attack") || character.jabOnce == true)
-        {
-            Destroy(character.tempHitbox);
-            character.jabOnce = false;
-            character.canMove = true;
+            Debug.Log("IN Jab");
+            StartCoroutine(Jab());
+            
         }
 
         
     }
+
+    //Attacks Coroutines
+    IEnumerator Nair()
+    {
+        Debug.Log("Nair");
+        character.tempAirHitbox = Instantiate(character.airHitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
+        character.tempAirHitbox.transform.parent = gameObject.transform;
+
+        character.tempAirHitbox.transform.position = gameObject.transform.position;
+
+        character.canMove = false;
+        animator.SetTrigger("neutral_air");
+        
+        animator.SetBool("run", false);
+        character.running = false;
+        animator.SetBool("walk", false);
+
+        yield return new WaitForSeconds(0.5f);
+
+        Destroy(character.tempAirHitbox);
+        character.canMove = true;
+    }
+    IEnumerator NeutralB()
+    {
+        Debug.Log("Neutral B");
+        character.tempBHitbox = Instantiate(character.bHitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
+        character.tempBHitbox.transform.parent = gameObject.transform;
+
+        character.tempBHitbox.transform.position = gameObject.transform.position;
+
+        character.canMove = false;
+        animator.SetTrigger("neutral_special");
+        animator.SetBool("run", false);
+        character.running = false;
+        animator.SetBool("walk", false);
+        
+
+        yield return new WaitForSeconds(0.5f);
+
+        Destroy(character.tempBHitbox);
+        character.canMove = true;
+    }
+    IEnumerator Jab()
+    {
+        Debug.Log("Jab");
+        character.tempAHitbox = Instantiate(character.aHitbox, new Vector3(0, 0, 0), transform.rotation) as GameObject;
+        character.tempAHitbox.transform.parent = gameObject.transform;
+
+        character.tempAHitbox.transform.position = gameObject.transform.position;
+
+        character.canMove = false;
+        animator.SetTrigger("punch");
+        animator.SetBool("run", false);
+        character.running = false;
+        animator.SetBool("walk", false);
+
+        character.jabOnce = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        Destroy(character.tempAHitbox);
+        character.jabOnce = false;
+        character.canMove = true;
+    }
+
 
     void Flip()
     {
@@ -301,12 +295,7 @@ public class PlayerController : PhysicsOverride {
                 velocity.y = -velocity.y;
         }
 
-        if (other.gameObject.CompareTag("Attack"))
-        {
-            knockback = new Vector2(20, 20);
-            velocity.y = 20;
-            
-        }
+        
     }
 
     protected override void Update()

@@ -30,8 +30,13 @@ public class CharacterParameters : MonoBehaviour {
     //Prefabs
     public GameObject shield;
     public GameObject tempShield;
-    public GameObject hitbox;
-    public GameObject tempHitbox;
+    public GameObject aHitbox;
+    public GameObject tempAHitbox;
+    public GameObject bHitbox;
+    public GameObject tempBHitbox;
+    public GameObject airHitbox;
+    public GameObject tempAirHitbox;
+
 
     //Cached components
     public Transform myTransform;
