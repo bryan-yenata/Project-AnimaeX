@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: c684133d4331e484893ba4ae0386a01a
+=======
+guid: 34e6d8d0e2c55454fbe5ef8d9b471b6c
+>>>>>>> origin/Animator
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
