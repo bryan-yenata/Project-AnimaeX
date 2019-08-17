@@ -5,3 +5,5 @@ Project AnimaeX is a Super Smash Bros. inspired game that is aiming to do improv
 This game follows the purpose of SSB, which is to combine the different characters from different game universes (Nintendo and non-Nintendo). 
 
 Instead of using game characters, we are using Anime and Cartoon (Animation) characters, hence the name "AnimaeX". AnimaeX is the combination of Anim**a**tion and Anim**e**, with X meaning the cross between the two worlds.
+
+# THIS REPO IS NOT COMPLETE! THE COMPLETED GAME FILES ARE GONE!
